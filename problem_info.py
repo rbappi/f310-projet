@@ -6,13 +6,15 @@ class ProblemInfo:
         self.__source = None
         self.__sink = None
         self.__arcs = None
+        self.__density = None
         # pass
 
-    def setAll(self, nodes, source, sink, arcs):
+    def setAll(self, nodes, source, sink, arcs, density):
         self.__nodes = nodes
         self.__source = source
         self.__sink = sink
         self.__arcs = arcs
+        self.__density = density
 
     @property
     def nodes(self):
@@ -46,4 +48,11 @@ class ProblemInfo:
     def arcs(self, arcs):
         self.__arcs = arcs
 
+    @property
+    def density(self):
+        return self.__density
+
+    @density.setter
+    def density(self, density):
+        self.__density = density
 
