@@ -1,7 +1,7 @@
 from directed_graph import DirectedGraph, Node, Arc
 
 
-def test_run():
+def main():
     # Create some nodes and arcs
     a = Node("A")
     b = Node("B")
@@ -39,4 +39,4 @@ def test_run():
 
 
 if __name__ == '__main__':
-    test_run()
+    main()
