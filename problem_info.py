@@ -2,57 +2,57 @@
 
 class ProblemInfo:
     def __init__(self):
-        self.__nodes = None
-        self.__source = None
-        self.__sink = None
-        self.__arcs = None
-        self.__density = None
+        self._nodes = None
+        self._source = None
+        self._sink = None
+        self._arcs = None
+        self._density = None
         # pass
 
     def setAll(self, nodes, source, sink, arcs, density):
-        self.__nodes = nodes
-        self.__source = source
-        self.__sink = sink
-        self.__arcs = arcs
-        self.__density = density
+        self._nodes = nodes
+        self._source = source
+        self._sink = sink
+        self._arcs = arcs
+        self._density = density
 
     @property
     def nodes(self):
-        return self.__nodes
+        return self._nodes
 
     @property
     def source(self):
-        return self.__source
+        return self._source
 
     @property
     def sink(self):
-        return self.__sink
+        return self._sink
 
     @property
     def arcs(self):
-        return self.__arcs
+        return self._arcs
 
     @nodes.setter
     def nodes(self, nodes):
-        self.__nodes = nodes
+        self._nodes = nodes
 
     @source.setter
     def source(self, source):
-        self.__source = source
+        self._source = source
 
     @sink.setter
     def sink(self, sink):
-        self.__sink = sink
+        self._sink = sink
 
     @arcs.setter
     def arcs(self, arcs):
-        self.__arcs = arcs
+        self._arcs = arcs
 
     @property
     def density(self):
-        return self.__density
+        return self._density
 
     @density.setter
     def density(self, density):
-        self.__density = density
+        self._density = density
 
