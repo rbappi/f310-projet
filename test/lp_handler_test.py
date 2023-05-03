@@ -1,7 +1,6 @@
 # tests all the instances from ../instances
 
 import os
-from lp_handler import LPWriter, FileReader
 from generate_model import create_lp_file
 
 
