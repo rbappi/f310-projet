@@ -1,5 +1,7 @@
 #!/usr/bin/python
-from directed_graph import DirectedGraph, Node, Arc
+from directed_graph import DirectedGraph
+from arc import Arc
+from node import Node
 from problem_info import ProblemInfo
 
 

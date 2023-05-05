@@ -1,5 +1,5 @@
 from directed_graph import DirectedGraph
-from arc import Arc
+from chemin_augmentant import ArcWithFlow
 from node import Node
 
 
@@ -11,12 +11,12 @@ def main():
     d = Node("D")
     e = Node("E")
     f = Node("F")
-    arc1 = Arc(a, b)
-    arc2 = Arc(a, c)
-    arc3 = Arc(b, d)
-    arc4 = Arc(c, d)
-    arc5 = Arc(d, e)
-    arc6 = Arc(c, f)
+    arc1 = ArcWithFlow(a, b, flow=25)
+    arc2 = ArcWithFlow(a, c)
+    arc3 = ArcWithFlow(b, d)
+    arc4 = ArcWithFlow(c, d)
+    arc5 = ArcWithFlow(d, e)
+    arc6 = ArcWithFlow(c, f)
 
     # Create a graph and add the nodes and arcs to it
     graph = DirectedGraph()
