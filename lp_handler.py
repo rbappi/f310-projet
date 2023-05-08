@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from directed_graph import DirectedGraph
-from arc import Arc
+from arc import ArcWithFlow
 from node import Node
 from problem_info import ProblemInfo
 
@@ -40,7 +40,7 @@ class FileReader:
                     continue
                 i = Node(i_val)
                 j = Node(j_val)
-                arc = Arc(i, j, int(strippedLine[2]))
+                arc = ArcWithFlow(i, j, int(strippedLine[2]))
                 self._graph.add_node(i)
                 self._graph.add_node(j)
                 self._graph.add_arc(arc)

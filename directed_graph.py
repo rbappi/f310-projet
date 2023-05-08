@@ -2,7 +2,7 @@
 class DirectedGraph:
     def __init__(self):
         self._nodes = {}
-        self._arcs = []
+        self._arcs = {}
 
     def add_node(self, node):
         if self.node_exists(node) is False:
@@ -15,7 +15,7 @@ class DirectedGraph:
         if start_node_exists is True and end_node_exists is True:
             self._nodes[arc.start_node.get_value()].add_outgoing_arc(arc)
             self._nodes[arc.end_node.get_value()].add_incoming_arc(arc)
-            self._arcs.append(arc)
+            self._arcs[arc.get_id()] = arc
 
     def node_exists(self, node):
         return node.get_value() in self._nodes
@@ -36,3 +36,12 @@ class DirectedGraph:
 
     def get_arcs(self):
         return self._arcs
+
+    def get_arc_from_id(self, id):
+        return self._arcs[id]
+
+    def update_arc_flow(self, id, flow):
+        self._arcs[id].set_flow(flow)
+
+    # def get_direction_of_arc(self, node1, node2):
+
