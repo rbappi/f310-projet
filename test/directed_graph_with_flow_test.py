@@ -1,5 +1,5 @@
 from directed_graph import DirectedGraph
-from chemin_augmentant import ArcWithFlow
+from arc import ArcWithFlow
 from node import Node
 
 
