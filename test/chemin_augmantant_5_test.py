@@ -1,10 +1,11 @@
-from chemin_augmentant import CheminAugmentant, DirectedGraph, ProblemInfo, Node
+from chemin_augmentant import CheminAugmentant, DirectedGraph, ProblemInfo
 from arc import ArcWithFlow
-from lp_handler import FileReader
+from node import Node
+from file_handler import FileReader
 
 
 def six_tester():
-    file = FileReader("../instances/inst-100-0.3.txt")
+    file = FileReader("../instances/inst-0-0.0.txt")
     graph = file.get_graph()
     problemInfo = file.get_problem_info()
     chemin_augmentant = CheminAugmentant(graph, problemInfo)

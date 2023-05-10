@@ -1,8 +1,8 @@
 import sys
-from lp_handler import LPWriter, FileReader
+from file_handler import LPWriter, FileReader
 
 
-def create_lp_file(file, dest="./"):
+def main(file, dest="./"):
     fl = FileReader(file)
     graph = fl.get_graph()
     problemInfo = fl.get_problem_info()
@@ -18,6 +18,6 @@ if __name__ == "__main__":
     filename = sys.argv[1]
     if length == 3:
         destination = sys.argv[2]
-        create_lp_file(filename, destination)
+        main(filename, destination)
     else:
-        create_lp_file(filename)
+        main(filename)
