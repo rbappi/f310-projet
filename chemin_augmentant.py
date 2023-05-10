@@ -2,6 +2,7 @@ import sys
 from directed_graph import DirectedGraph
 from file_handler import FileReader
 from problem_info import ProblemInfo
+from timer import Timer
 
 
 class CheminAugmentant:
@@ -105,21 +106,25 @@ class CheminAugmentant:
 
 
 def main(file, dest="./"):
+    timer = Timer()
     fl = FileReader(file)
     graph = fl.get_graph()
     problem_info = fl.get_problem_info()
     chemin_augmentant = CheminAugmentant(graph, problem_info)
     print("---------------------------------")
     print("Running chemin augmentant...")
+    timer.start()
     chemin_augmentant.chemin_augmentant(graph, problem_info)
     max_flow = chemin_augmentant.get_max_flow()
-    print("Resolution complete!")
+    timer.stop()
+    print(f"Resolution complete in {timer.print_elapsed()}.")
     print(f"Max flow from source calculated: {max_flow}")
     arcs = chemin_augmentant.get_arcs()
     file_sol = f"model-{problem_info.nodes}-{problem_info.density}.path"
     file_to_write = open(file_sol, "w")
     print(f"Writing solution to '{file_sol}'...")
     file_to_write.write(f"Max flow from source calculated: {max_flow}\n")
+    file_to_write.write(f"Resolution complete in {timer.print_elapsed()}.\n")
     for arc in arcs:
         # print(f"{arcs[arc]}")
         file_to_write.write(f"{arcs[arc]}\n")

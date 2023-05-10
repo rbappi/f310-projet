@@ -1,5 +1,5 @@
 from chemin_augmentant import CheminAugmentant, DirectedGraph, ProblemInfo
-from arc import ArcWithFlow
+from arc import Arc
 from node import Node
 from file_handler import FileReader
 
@@ -20,12 +20,12 @@ def five_tester():
     node3 = Node(3)
     node4 = Node(4)
     node5 = Node(5)
-    arc1 = ArcWithFlow(node1, node2, 15, 10)
-    arc2 = ArcWithFlow(node1, node3, 15, 10)
-    arc3 = ArcWithFlow(node2, node4, 15, 10)
-    arc4 = ArcWithFlow(node3, node4, 10, 10)
-    arc5 = ArcWithFlow(node3, node5, 10, 0)
-    arc6 = ArcWithFlow(node4, node5, 20, 20)
+    arc1 = Arc(node1, node2, 15, 10)
+    arc2 = Arc(node1, node3, 15, 10)
+    arc3 = Arc(node2, node4, 15, 10)
+    arc4 = Arc(node3, node4, 10, 10)
+    arc5 = Arc(node3, node5, 10, 0)
+    arc6 = Arc(node4, node5, 20, 20)
     graph.add_node(node1)
     graph.add_node(node2)
     graph.add_node(node3)
