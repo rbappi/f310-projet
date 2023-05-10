@@ -67,7 +67,10 @@ class LPWriter:
     def __init__(self, problem_info, graph, destination="./") -> None:
         self._problemInfo = problem_info
         self._graph = graph
-        self._destination = destination
+        if destination == './':
+            self._filename = f'model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
+        else:
+            self._filename = f'{self._destination}/model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
 
     def _get_function(self, node, obj=False):
         ret = ""
@@ -82,11 +85,7 @@ class LPWriter:
         return ret
 
     def create_lp_file(self):
-        if self._destination == './':
-            filename = f'model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
-        else:
-            filename = f'{self._destination}/model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
-        file = open(filename, "w")
+        file = open(self._filename, "w")
         file.write(f"Maximize\n")  # write objective function
         objectiveFunction = self._get_function(self._graph.get_node_from_value(self._problemInfo.source), True)
         file.write("    obj: " + objectiveFunction + "\n")  # write objective function
@@ -105,6 +104,6 @@ class LPWriter:
 
         file.write("\nEnd\n")  # write end
         file.close()
-        print(f"File '{filename}' created!")
+        print(f"File '{self._filename}' created!")
 
 

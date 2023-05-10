@@ -12,7 +12,7 @@ def main(file, dest="./"):
 
 if __name__ == "__main__":
     length = len(sys.argv)
-    if length < 2:
+    if length < 2 or length > 3:
         print("Usage: python3 generate_model.py <filename> [<destination>]")
         exit(1)
     filename = sys.argv[1]

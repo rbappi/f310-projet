@@ -106,10 +106,15 @@ class CheminAugmentant:
 
 
 def main(file, dest="./"):
+
     timer = Timer()
     fl = FileReader(file)
     graph = fl.get_graph()
     problem_info = fl.get_problem_info()
+    if dest == './':
+        file_sol = f"model-{problem_info.nodes}-{problem_info.density}.path"
+    else:
+        file_sol = f"{dest}/model-{problem_info.nodes}-{problem_info.density}.path"
     chemin_augmentant = CheminAugmentant(graph, problem_info)
     print("---------------------------------")
     print("Running chemin augmentant...")
@@ -120,7 +125,6 @@ def main(file, dest="./"):
     print(f"Resolution complete in {timer.print_elapsed()}.")
     print(f"Max flow from source calculated: {max_flow}")
     arcs = chemin_augmentant.get_arcs()
-    file_sol = f"model-{problem_info.nodes}-{problem_info.density}.path"
     file_to_write = open(file_sol, "w")
     print(f"Writing solution to '{file_sol}'...")
     file_to_write.write(f"Max flow from source calculated: {max_flow}\n")
