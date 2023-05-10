@@ -99,8 +99,9 @@ class LPWriter:
                 file.write(f"    {var_name}: " + self._get_function(node) + "\n")
 
         file.write("\nBounds\n")  # write bounds
-        for arc in self._graph.get_arcs():
-            file.write(f"    0 <= {arc.get_id()} <= {arc.get_capacity()}\n")
+        arcs = self._graph.get_arcs()
+        for arc in arcs:
+            file.write(f"    0 <= {arcs[arc].get_id()} <= {arcs[arc].get_capacity()}\n")
 
         file.write("\nEnd\n")  # write end
         file.close()
