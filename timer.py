@@ -1,5 +1,5 @@
-import sys
 import time
+
 
 class Timer:
 
@@ -14,7 +14,6 @@ class Timer:
     def stop(self):
         self._end = time.perf_counter()
         self._elapsed = self._end - self._start
-        # print(f"Elapsed time: {self._elapsed:0.4f} seconds")
 
     def get_elapsed(self):
         return self._elapsed

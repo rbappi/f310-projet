@@ -1,11 +1,14 @@
 #!/usr/bin/python
-from directed_graph import DirectedGraph
 from arc import Arc
+from directed_graph import DirectedGraph
 from node import Node
 from problem_info import ProblemInfo
 
 
 class FileReader:
+    """
+    Class that reads a file and creates a graph and a problem info object
+    """
     def __init__(self, fileName) -> None:
         self._fileName = fileName
         self._problemInfo = ProblemInfo()
@@ -13,6 +16,10 @@ class FileReader:
         self._readFile()
 
     def _readFile(self):
+        """
+        This method reads the file and creates the graph and the problem info object
+        :return:
+        """
         print(f"Reading file: {self._fileName}")
         print("Creating graph...")
         file = open(self._fileName)
@@ -36,11 +43,18 @@ class FileReader:
                 strippedLine = line.strip().split(" ")
                 i_val = int(strippedLine[0])
                 j_val = int(strippedLine[1])
+                arc_capacity = int(strippedLine[2])
                 if i_val == j_val:
+                    continue
+                possible_id = f"x_{i_val}_{j_val}"
+                if self._graph.arc_exists(possible_id) is True:
+                    # print(f"Arc already exists from {i_val} to {j_val} with capacity {arc_capacity}")
+                    atual_capacity = self._graph.get_arc_from_id(possible_id).get_capacity()
+                    self._graph.update_arc_flow(possible_id, atual_capacity + arc_capacity)
                     continue
                 i = Node(i_val)
                 j = Node(j_val)
-                arc = Arc(i, j, int(strippedLine[2]))
+                arc = Arc(i, j, arc_capacity)
                 self._graph.add_node(i)
                 self._graph.add_node(j)
                 self._graph.add_arc(arc)
@@ -64,15 +78,24 @@ class FileReader:
 
 
 class LPWriter:
+    """
+    Class that writes the LP file
+    """
     def __init__(self, problem_info, graph, destination="./") -> None:
         self._problemInfo = problem_info
         self._graph = graph
         if destination == './':
             self._filename = f'model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
         else:
-            self._filename = f'{self._destination}/model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
+            self._filename = f'{destination}/model-{self._problemInfo.nodes}-{self._problemInfo.density}.lp'
 
     def _get_function(self, node, obj=False):
+        """
+        This method returns the function of a node
+        :param node: node to get the function
+        :param obj: if it is the objective function
+        :return:
+        """
         ret = ""
         for incoming in node.get_incoming_arcs():
             sign = "-" if obj is True else "+"
@@ -85,6 +108,10 @@ class LPWriter:
         return ret
 
     def create_lp_file(self):
+        """
+        This method creates the LP file
+        :return:
+        """
         file = open(self._filename, "w")
         file.write(f"Maximize\n")  # write objective function
         objectiveFunction = self._get_function(self._graph.get_node_from_value(self._problemInfo.source), True)
@@ -105,5 +132,3 @@ class LPWriter:
         file.write("\nEnd\n")  # write end
         file.close()
         print(f"File '{self._filename}' created!")
-
-

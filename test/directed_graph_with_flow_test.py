@@ -1,5 +1,5 @@
-from directed_graph import DirectedGraph
 from arc import Arc
+from directed_graph import DirectedGraph
 from node import Node
 
 

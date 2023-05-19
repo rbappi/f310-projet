@@ -1,17 +1,20 @@
-from chemin_augmentant import CheminAugmentant, DirectedGraph, ProblemInfo
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join('..', 'src')))
+
 from arc import Arc
+from chemin_augmentant_processor import CheminAugmentant, DirectedGraph, ProblemInfo
+from chemin_augmentant import main as chemin_augmentant_main
 from node import Node
-from file_handler import FileReader
 
 
 def six_tester():
-    file = FileReader("../instances/inst-0-0.0.txt")
-    graph = file.get_graph()
-    problemInfo = file.get_problem_info()
-    chemin_augmentant = CheminAugmentant(graph, problemInfo)
-    chemin_augmentant.chemin_augmentant(graph, problemInfo)
-    print(chemin_augmentant.get_graph())
-    print(chemin_augmentant.get_L())
+    # file = FileReader("../instances/inst-1000-0.3.txt")
+    # graph = file.get_graph()
+    # problemInfo = file.get_problem_info()
+    chemin_augmentant_main("../instances/inst-1000-0.3.txt")
+
 
 def five_tester():
     graph = DirectedGraph()
@@ -53,6 +56,23 @@ def five_tester():
         print(f"{arcs[arc]}")
 
 
+def main_tester():
+    # timer = Timer()
+    file_timer = open("../results/python/timer.txt", "w")
+    for filename in os.listdir("../instances"):
+        if filename.endswith("0.3.txt"):
+            print(f"----------->Creating model for {filename}")
+            # timer.start()
+            time = chemin_augmentant_main(f"../instances/{filename}", "../results/python")
+            # timer.stop()
+            file_timer.write("-------------------------------------\n")
+            file_timer.write(f"{filename}: {time}\n")
+            file_timer.write("-------------------------------------\n")
+            print(f"----------->Done with {filename}")
+    file_timer.close()
+
+
 if __name__ == "__main__":
     six_tester()
     # five_tester()
+    # main_tester()

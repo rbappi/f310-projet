@@ -55,4 +55,3 @@ class ProblemInfo:
     @density.setter
     def density(self, density):
         self._density = density
-

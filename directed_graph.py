@@ -1,4 +1,3 @@
-
 class DirectedGraph:
     def __init__(self):
         self._nodes = {}
@@ -43,5 +42,8 @@ class DirectedGraph:
     def update_arc_flow(self, id, flow):
         self._arcs[id].set_flow(flow)
 
-    # def get_direction_of_arc(self, node1, node2):
+    def update_arc_capacity(self, id, capacity):
+        self._arcs[id].set_cost(capacity)
 
+    def arc_exists(self, arc_id):
+        return arc_id in self._arcs

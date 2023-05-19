@@ -6,9 +6,6 @@ class Arc:
         self._id = f"x_{start_node.get_value()}_{end_node.get_value()}"
         self._flow = flow
 
-    def __repr__(self):
-        return f"Arc(id: {self.id}, weight: {self._capacity})"
-
     def get_start_node(self):
         return self._start_node
 
@@ -34,11 +31,13 @@ class Arc:
         return self._id
 
     def get_flow(self):
-            return self._flow
+        return self._flow
 
     def set_flow(self, flow):
         self._flow = flow
 
     def __repr__(self):
-        return f"Arc(id: {self.id}, weight: {self._capacity}, flow: {self._flow})"
+        return f"Arc(id: {self.id}, capacity: {self._capacity}, flow: {self._flow})"
 
+    def set_cost(self, capacity):
+        self._capacity = capacity
